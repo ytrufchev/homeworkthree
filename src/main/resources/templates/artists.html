@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <script src="/addNew.js"></script>
+    <meta charset="UTF-8">
+    <title>Artists</title>
+</head>
+<body>
+<div class="container">
+    <div class="component" th:each="artist : ${artists}">
+        <img th:src="${artist.imageUrl}">
+        <h3 th:text="${artist.name}"></h3>
+    </div>
+    <div class="addBtn" id="addBtn">
+        <text>+</text>
+    </div>
+    <div class="add"  id="addArtist" style="display:none;">
+        <form action="/artists/add" method="post">
+            <label for="name">Artist name</label><br>
+            <input type="text" id="name" name="name" value=""><br>
+            <label for="imageUrl">Artist photo URL</label><br>
+            <input type="text" id="imageUrl" name="imageUrl" value=""><br><br>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    document.getElementById("addBtn").addEventListener("click", function() {
+        addNew("addArtist");
+    });
+</script>
+</html>
